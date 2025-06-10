@@ -30,7 +30,8 @@ from comfy.ldm.flux.math import apply_rope as apply_rope_comfy
 
 def rope_riflex(pos, dim, theta, L_test, k, temporal):
     assert dim % 2 == 0
-    if mm.is_device_mps(pos.device) or mm.is_intel_xpu() or mm.is_directml_enabled():
+    # if mm.is_device_mps(pos.device) or mm.is_intel_xpu() or mm.is_directml_enabled():
+    if mm.is_device_mps(pos.device) or mm.is_intel_xpu() or mm.directml_enabled:
         device = torch.device("cpu")
     else:
         device = pos.device
